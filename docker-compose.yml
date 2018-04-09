@@ -18,6 +18,10 @@ services:
         volumes:
             - "./nginx-conf/tomcat.conf:/etc/nginx/conf.d/tomcat.conf:ro"
             - "./nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro"
+        logging:
+            driver: journald
+            options:
+                tag: 'nginx'
         networks:
             tomcat-net:
                 ipv4_address: 172.33.1.10
@@ -26,8 +30,10 @@ services:
         build:
             context: .
             dockerfile: tomcat.Dockerfile
+        logging:
+            driver: journald
+            options:
+                tag: 'tomcat'
         networks:
             tomcat-net:
                 ipv4_address: 172.33.1.20
-
-
