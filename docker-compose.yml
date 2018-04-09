@@ -25,6 +25,9 @@ services:
         networks:
             tomcat-net:
                 ipv4_address: 172.33.1.10
+        ulimits:
+            nproc: 3
+            memlock: 48000
 
     tomcat:
         build:
@@ -37,3 +40,6 @@ services:
         networks:
             tomcat-net:
                 ipv4_address: 172.33.1.20
+        ulimits:
+            nproc: 20
+            memlock: 48000
